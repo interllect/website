@@ -1,0 +1,11 @@
+<html>
+<body>
+<iframe 
+  src="http://localhost/" 
+  frameborder="0" 
+  width="100%" 
+  height="100%" 
+  scrolling="yes">
+</iframe>
+</body>
+</html>

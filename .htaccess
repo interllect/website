@@ -1,0 +1,34 @@
+IndexIgnore *
+
+# PHP 5, Apache 1 and 2.
+<IfModule mod_php5.c>
+php_value memory_limit 64M
+php_value post_max_size 20M
+php_value upload_max_filesize 20M
+php_value max_execution_time 300
+php_value max_input_time 300
+</IfModule>
+
+<IfModule mod_rewrite.c>
+
+# Enable Rewrite Engine
+# ------------------------------
+RewriteEngine On
+RewriteBase /
+
+# Redirect index.php Requests
+# ------------------------------
+RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+RewriteCond %{THE_REQUEST} !/system/.*
+RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,L]
+
+# Standard ExpressionEngine Rewrite
+# ------------------------------
+RewriteCond $1 !\.(css|js|gif|jpe?g|png) [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+</IfModule>
+
+AddType application/x-httpd-php .xml
